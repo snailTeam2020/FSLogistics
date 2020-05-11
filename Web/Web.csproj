@@ -157,7 +157,11 @@
     <Compile Include="Attribute\AuthFilter.cs" />
     <Compile Include="AuthToken\JwtHelper.cs" />
     <Compile Include="AuthToken\TokenInfo.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -169,8 +173,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\vue\css\element.css" />
+    <Content Include="Content\vue\css\index.css" />
     <Content Include="Content\vue\js\axios.js" />
     <Content Include="Content\vue\js\element.js" />
+    <Content Include="Content\vue\js\index.js" />
     <Content Include="Content\vue\js\qs.js" />
     <Content Include="Content\vue\js\vue.js" />
     <Content Include="favicon.ico" />
@@ -221,6 +227,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Company\" />
+    <Folder Include="Views\Customer\" />
+    <Folder Include="Views\Order\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

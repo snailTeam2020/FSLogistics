@@ -1,0 +1,64 @@
+ .el-header, .el-footer {
+    background-color: #004E90;
+    color: #fff;
+    text-align: center;
+
+  }
+  
+  .el-aside {
+    background-color: #151515;
+    color: #fff;
+    text-align: center;
+   
+  }
+  
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+
+  }
+  
+  body > .el-container {
+    margin-bottom: 40px;
+  }
+  
+  .el-container:nth-child(5) .el-aside,
+  .el-container:nth-child(6) .el-aside {
+    line-height: 260px;
+  }
+  
+  .el-container:nth-child(7) .el-aside {
+    line-height: 320px;
+  }
+  .sp_qdpad.el-card{
+	  background-color:inherit;
+  }
+  .sp_qdpad .el-card__body{
+	  padding:0px;
+  }
+   .sp_qdpad .el-card__body .item{
+	   margin-bottom:20px;
+   }
+   .sp_qdpad .el-card__body .item:nth-child(1){
+   	background-color:#fff;
+   }
+    .sp_qdpad .el-card__body .item:nth-child(2){
+		background-color:#0B8FFF;
+	}
+	.sp_qdpad .el-card__body .item:nth-child(3){
+		background-color:#002D53;
+	}
+	.sp_jgukg span{
+		font-size:80px;
+		    margin-top: 14px;
+	}
+	.sp_search .el-input__inner{
+		margin-bottom:20px;
+	}
+	
+	/* 登录页面 */
+	#login .el-card{
+		width:100%;
+		    background-color: rgba(255, 255, 255, 0.8);
+	}

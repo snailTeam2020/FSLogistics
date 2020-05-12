@@ -1,140 +1,292 @@
-﻿
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
+﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-    <!-- import CSS -->
-    <link rel="stylesheet" href="@Url.Content("~/Content/vue/css/element.css")">
+    <meta charset="utf-8">
+    <link href="~/Content/vue/css/index.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
 </head>
 <body>
-    <el-container style="height: 500px; border: 1px solid #eee">
-        <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-            <el-menu :default-openeds="['1', '3']">
-                <el-submenu index="1">
-                    <template slot="title">
-                        <i class="el-icon-message"></i>导航一
-                    </template>
-                    <el-menu-item-group>
-                        <template slot="title">
-                            分组一
-                        </template>
-                        <el-menu-item index="1-1">选项1</el-menu-item>
-                        <el-menu-item index="1-2">选项2</el-menu-item>
-                    </el-menu-item-group>
-                    <el-menu-item-group title="分组2">
-                        <el-menu-item index="1-3">选项3</el-menu-item>
-                    </el-menu-item-group>
-                    <el-submenu index="1-4">
-                        <template slot="title">
-                            选项4
-                        </template>
-                        <el-menu-item index="1-4-1">选项4-1</el-menu-item>
-                    </el-submenu>
-                </el-submenu>
-                <el-submenu index="2">
-                    <template slot="title">
-                        <i class="el-icon-menu"></i>导航二
-                    </template>
-                    <el-menu-item-group>
-                        <template slot="title">
-                            分组一
-                        </template>
-                        <el-menu-item index="2-1">选项1</el-menu-item>
-                        <el-menu-item index="2-2">选项2</el-menu-item>
-                    </el-menu-item-group>
-                    <el-menu-item-group title="分组2">
-                        <el-menu-item index="2-3">选项3</el-menu-item>
-                    </el-menu-item-group>
-                    <el-submenu index="2-4">
-                        <template slot="title">
-                            选项4
-                        </template>
-                        <el-menu-item index="2-4-1">选项4-1</el-menu-item>
-                    </el-submenu>
-                </el-submenu>
-                <el-submenu index="3">
-                    <template slot="title">
-                        <i class="el-icon-setting"></i>导航三
-                    </template>
-                    <el-menu-item-group>
-                        <template slot="title">
-                            分组一
-                        </template>
-                        <el-menu-item index="3-1">选项1</el-menu-item>
-                        <el-menu-item index="3-2">选项2</el-menu-item>
-                    </el-menu-item-group>
-                    <el-menu-item-group title="分组2">
-                        <el-menu-item index="3-3">选项3</el-menu-item>
-                    </el-menu-item-group>
-                    <el-submenu index="3-4">
-                        <template slot="title">
-                            选项4
-                        </template>
-                        <el-menu-item index="3-4-1">选项4-1</el-menu-item>
-                    </el-submenu>
-                </el-submenu>
-            </el-menu>
-        </el-aside>
-
+    <div id="app">
         <el-container>
-            <el-header style="text-align: right; font-size: 12px">
-                <el-dropdown>
-                    <i class="el-icon-setting" style="margin-right: 15px"></i>
-                    <el-dropdown-menu slot="dropdown">
-                        <el-dropdown-item>查看</el-dropdown-item>
-                        <el-dropdown-item>新增</el-dropdown-item>
-                        <el-dropdown-item>删除</el-dropdown-item>
-                    </el-dropdown-menu>
-                </el-dropdown>
-                <span>王小虎</span>
-            </el-header>
+            <el-header>Header</el-header>
+            <el-container>
+                <el-aside width="220px">
+                    <el-row>
+                        <el-col :span="24">
 
-            <el-main>
-                <el-table :data="tableData">
-                    <el-table-column prop="date" label="日期" width="140">
-                    </el-table-column>
-                    <el-table-column prop="name" label="姓名" width="120">
-                    </el-table-column>
-                    <el-table-column prop="address" label="地址">
-                    </el-table-column>
-                </el-table>
-            </el-main>
+                            <el-menu default-active="2"
+                                     class="el-menu-vertical-demo"
+                                     @open=""
+                                     @close=""
+                                     background-color="#202020"
+                                     text-color="#fff"
+                                     active-text-color="#ffd04b">
+                                <el-submenu index="1">
+                                    <template slot="title">
+                                        <i class="el-icon-location"></i>
+                                        <span>导航一</span>
+                                    </template>
+                                    <el-menu-item-group>
+                                        <template slot="title">
+                                            分组一
+                                        </template>
+                                        <el-menu-item index="1-1">选项1</el-menu-item>
+                                        <el-menu-item index="1-2">选项2</el-menu-item>
+                                    </el-menu-item-group>
+                                    <el-menu-item-group title="分组2">
+                                        <el-menu-item index="1-3">选项3</el-menu-item>
+                                    </el-menu-item-group>
+                                    <el-submenu index="1-4">
+                                        <template slot="title">
+                                            选项4
+                                        </template>
+                                        <el-menu-item index="1-4-1">选项1</el-menu-item>
+                                    </el-submenu>
+                                </el-submenu>
+                                <el-menu-item index="2">
+                                    <i class="el-icon-menu"></i>
+                                    <span slot="title">导航二</span>
+                                </el-menu-item>
+                                <el-menu-item index="3" disabled>
+                                    <i class="el-icon-document"></i>
+                                    <span slot="title">导航三</span>
+                                </el-menu-item>
+                                <el-menu-item index="4">
+                                    <i class="el-icon-setting"></i>
+                                    <span slot="title">导航四</span>
+                                </el-menu-item>
+                            </el-menu>
+                        </el-col>
+                    </el-row>
+                </el-aside>
+                <el-main>
+                    <el-row :gutter="20">
+                        <el-col :span="4">
+                            <div class="grid-content bg-purple sp_search">
+                                <el-form :inline="true" :model="formInline" class="demo-form-inline">
+                                    <el-form-item label="搜索条件">
+                                        <el-input v-model="formInline.user" placeholder="实体名" clearable></el-input>
+                                        <el-input v-model="formInline.user" placeholder="实体名" clearable></el-input>
+
+                                    </el-form-item>
+
+
+                                    <el-form-item>
+                                        <el-button type="primary" @click="onSubmit">查询</el-button>
+                                    </el-form-item>
+                                </el-form>
+
+                            </div>
+                        </el-col>
+                        <el-col :span="20">
+                            <div class="grid-content bg-purple">
+                                <el-card class="box-card">
+                                    <div slot="header" class="clearfix">
+                                        <span>操作按钮</span>
+                                        <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+                                    </div>
+                                    <div class="text item" style="text-align:left;">
+                                        <el-row>
+                                            <el-button type="primary" round>主要按钮</el-button>
+                                            <el-button type="success" round>成功按钮</el-button>
+                                            <el-button type="info" round>信息按钮</el-button>
+                                            <el-button type="warning" round>警告按钮</el-button>
+                                            <el-button type="danger" round>危险按钮</el-button>
+                                        </el-row>
+                                    </div>
+                                </el-card>
+                                <el-row>
+                                    <template>
+                                        <el-table :data="tableData"
+                                                  style="width: 100%"
+                                                  height="400">
+                                            <el-table-column prop="date"
+                                                             label="日期"
+                                                             width="300">
+                                            </el-table-column>
+                                            <el-table-column prop="name"
+                                                             label="姓名"
+                                                             width="300">
+                                            </el-table-column>
+                                            <el-table-column prop="province"
+                                                             label="省份"
+                                                             width="300">
+                                            </el-table-column>
+                                            <el-table-column prop="city"
+                                                             label="市区"
+                                                             width="300">
+                                            </el-table-column>
+                                            <el-table-column prop="address"
+                                                             label="地址"
+                                                             width="300">
+                                            </el-table-column>
+                                            <el-table-column prop="zip"
+                                                             label="邮编"
+                                                             width="300">
+                                            </el-table-column>
+                                            <el-table-column fixed="right"
+                                                             label="操作"
+                                                             width="150">
+                                                <template slot-scope="scope">
+                                                    <el-button @click.native.prevent="deleteRow(scope.$index, tableData)"
+                                                               type="text"
+                                                               size="small">
+                                                        编辑该项
+                                                    </el-button>
+                                                </template>
+                                            </el-table-column>
+                                        </el-table>
+                                    </template>
+                                </el-row>
+
+
+                                <div style="margin-bottom:20px;"></div>
+                                <div style="text-align: left;">
+                                    <el-button type="primary" round>新增</el-button>
+                                    <el-button type="success" round>保存</el-button>
+                                </div>
+                                <div style="margin-bottom:20px;"></div>
+                                <el-row :gutter="10">
+                                    <el-col :span="8">
+                                        <div class="grid-content bg-purple">
+                                            <el-card class="box-card">
+                                                <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+                                                    <el-form-item label="名称">
+                                                        <el-input v-model="formLabelAlign.name"></el-input>
+                                                    </el-form-item>
+                                                    <el-form-item label="活动区域">
+                                                        <el-input v-model="formLabelAlign.region"></el-input>
+                                                    </el-form-item>
+                                                    <el-form-item label="活动形式">
+                                                        <el-input v-model="formLabelAlign.type"></el-input>
+                                                    </el-form-item>
+                                                </el-form>
+                                            </el-card>
+                                        </div>
+                                    </el-col>
+                                    <el-col :span="8">
+                                        <div class="grid-content bg-purple">
+                                            <el-card class="box-card">
+                                                <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+                                                    <el-form-item label="名称">
+                                                        <el-input v-model="formLabelAlign.name"></el-input>
+                                                    </el-form-item>
+                                                    <el-form-item label="活动区域">
+                                                        <el-input v-model="formLabelAlign.region"></el-input>
+                                                    </el-form-item>
+                                                    <el-form-item label="活动形式">
+                                                        <el-input v-model="formLabelAlign.type"></el-input>
+                                                    </el-form-item>
+                                                </el-form>
+                                            </el-card>
+                                        </div>
+                                    </el-col>
+                                    <el-col :span="8">
+                                        <div class="grid-content bg-purple">
+                                            <el-card class="box-card">
+                                                <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+                                                    <el-form-item label="名称">
+                                                        <el-input v-model="formLabelAlign.name"></el-input>
+                                                    </el-form-item>
+                                                    <el-form-item label="活动区域">
+                                                        <el-input v-model="formLabelAlign.region"></el-input>
+                                                    </el-form-item>
+                                                    <el-form-item label="活动形式">
+                                                        <el-input v-model="formLabelAlign.type"></el-input>
+                                                    </el-form-item>
+                                                </el-form>
+                                            </el-card>
+                                        </div>
+                                    </el-col>
+                                </el-row>
+
+
+
+
+                            </div>
+                        </el-col>
+                    </el-row>
+                </el-main>
+            </el-container>
         </el-container>
-    </el-container>
 
-    <style>
-        .el-header {
-            background-color: #B3C0D1;
-            color: #333;
-            line-height: 60px;
-        }
-
-        .el-aside {
-            color: #333;
-        }
-    </style>
-
+    </div>
+    <script src="~/Content/vue/js/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="~/Content/vue/js/index.js"></script>
     <script>
-        export default {
-            data() {
-                const item = {
+        var app = new Vue({
+            el: '#app',
+            data: {
+                tableData: [{
                     date: '2016-05-02',
                     name: '王小虎',
                     address: '上海市普陀区金沙江路 1518 弄'
-                };
-                return {
-                    tableData: Array(20).fill(item)
+                }, {
+                    date: '2016-05-04',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1517 弄'
+                }, {
+                    date: '2016-05-01',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1519 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }, {
+                    date: '2016-05-03',
+                    name: '王小虎',
+                    address: '上海市普陀区金沙江路 1516 弄'
+                }],
+                tableDatas: [
+                    {
+                        date: '2020-04-14',
+                        name: '王大虎',
+                        address: '南京市浦口区'
+                    }
+
+                ],
+                formInline: {
+                    user: '',
+                    region: ''
+                },
+                labelPosition: 'right',
+                formLabelAlign: {
+                    name: '',
+                    region: '',
+                    type: ''
                 }
+
             }
-        };
+        });
+
     </script>
+
+
 </body>
 </html>
-<!-- import Element -->
-<script src="@Url.Content("~/Content/vue/js/element.js")"></script>

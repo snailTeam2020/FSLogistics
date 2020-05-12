@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutVue.cshtml";
+}
+
+<h2>Index</h2>
+<el-main>
+    <el-row :gutter="20">
+        <el-col :span="4">
+            <div class="grid-content bg-purple sp_search">
+                <el-form :inline="true" :model="formInline" class="demo-form-inline">
+                    <el-form-item label="搜索条件">
+                        <el-input v-model="formInline.user" placeholder="实体名" clearable></el-input>
+                        <el-input v-model="formInline.user" placeholder="实体名" clearable></el-input>
+
+                    </el-form-item>
+
+
+                    <el-form-item>
+                        <el-button type="primary">查询</el-button>
+                    </el-form-item>
+                </el-form>
+
+            </div>
+        </el-col>
+        <el-col :span="20">
+            <div class="grid-content bg-purple">
+                <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span>操作按钮</span>
+                        <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+                    </div>
+                    <div class="text item" style="text-align:left;">
+                        <el-row>
+                            <el-button type="primary" round>主要按钮</el-button>
+                            <el-button type="success" round>成功按钮</el-button>
+                            <el-button type="info" round>信息按钮</el-button>
+                            <el-button type="warning" round>警告按钮</el-button>
+                            <el-button type="danger" round>危险按钮</el-button>
+                        </el-row>
+                    </div>
+                </el-card>
+                <el-row>
+                    <template>
+                        <el-table :data="tableData"
+                                  style="width: 100%"
+                                  height="400">
+                            <el-table-column prop="date"
+                                             label="日期"
+                                             width="300">
+                            </el-table-column>
+                            <el-table-column prop="name"
+                                             label="姓名"
+                                             width="300">
+                            </el-table-column>
+                            <el-table-column prop="province"
+                                             label="省份"
+                                             width="300">
+                            </el-table-column>
+                            <el-table-column prop="city"
+                                             label="市区"
+                                             width="300">
+                            </el-table-column>
+                            <el-table-column prop="address"
+                                             label="地址"
+                                             width="300">
+                            </el-table-column>
+                            <el-table-column prop="zip"
+                                             label="邮编"
+                                             width="300">
+                            </el-table-column>
+                            <el-table-column fixed="right"
+                                             label="操作"
+                                             width="150">
+                                <template slot-scope="scope">
+                                    <el-button type="text"
+                                               size="small">
+                                        编辑该项
+                                    </el-button>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                    </template>
+                </el-row>
+
+
+                <div style="margin-bottom:20px;"></div>
+                <div style="text-align: left;">
+                    <el-button type="primary" round>新增</el-button>
+                    <el-button type="success" round>保存</el-button>
+                </div>
+                <div style="margin-bottom:20px;"></div>
+                <el-row :gutter="10">
+                    <el-col :span="8">
+                        <div class="grid-content bg-purple">
+                            <el-card class="box-card">
+                                <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+                                    <el-form-item label="名称">
+                                        <el-input v-model="formLabelAlign.name"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="活动区域">
+                                        <el-input v-model="formLabelAlign.region"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="活动形式">
+                                        <el-input v-model="formLabelAlign.type"></el-input>
+                                    </el-form-item>
+                                </el-form>
+                            </el-card>
+                        </div>
+                    </el-col>
+                    <el-col :span="8">
+                        <div class="grid-content bg-purple">
+                            <el-card class="box-card">
+                                <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+                                    <el-form-item label="名称">
+                                        <el-input v-model="formLabelAlign.name"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="活动区域">
+                                        <el-input v-model="formLabelAlign.region"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="活动形式">
+                                        <el-input v-model="formLabelAlign.type"></el-input>
+                                    </el-form-item>
+                                </el-form>
+                            </el-card>
+                        </div>
+                    </el-col>
+                    <el-col :span="8">
+                        <div class="grid-content bg-purple">
+                            <el-card class="box-card">
+                                <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+                                    <el-form-item label="名称">
+                                        <el-input v-model="formLabelAlign.name"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="活动区域">
+                                        <el-input v-model="formLabelAlign.region"></el-input>
+                                    </el-form-item>
+                                    <el-form-item label="活动形式">
+                                        <el-input v-model="formLabelAlign.type"></el-input>
+                                    </el-form-item>
+                                </el-form>
+                            </el-card>
+                        </div>
+                    </el-col>
+                </el-row>
+            </div>
+        </el-col>
+    </el-row>
+</el-main>
+

@@ -196,6 +196,8 @@
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="SQLConfig\ComMaster.xml" />
+    <Content Include="SQLConfig\CompanyMaster.xml" />
     <Content Include="SQLConfig\OrderMaster.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -205,6 +207,7 @@
     <Content Include="SQLConfig\CustomerMaster.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="SQLConfig\UsersMaster.xml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

@@ -1,44 +1,199 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <SMMSSQL>
-  <PART PGID ="CustomerMaster">
-    <SQL ID="CustomerMaster_Load">
+  <PART PGID ="OrderMaster">
+    <SQL ID="OrderMaster_Load">
       <![CDATA[
- SELECT  
-		A.ID,
-		A.KUNNR,
-		A.ZNAME1,
-		A.VTWEG,
-		A.SPART,
-		A.ZSTREET,
-		A.ZADDRESS,
-		A.ZPOSTCODE,
-		A.ZCITY,
-		A.ZTEL,
-		A.ZFAX,
-		A.ZLXR,
-		A.ZLXRDH,
-		A.Description,
-		A.Depart,
-		A.Region,
-	  --A.Payment,
-    c.text as Payment
-FROM    vw_EOrder_CusSales A
-left JOIN f_payment({%CompanyCode%}) c
-on a.ZTERM=c.id
-WHERE   1 = 1 
---{%RecordID_Off%}  AND A.ID = {%RecordID%}  
-{%KUNNR_Off%}  AND A.KUNNR = {%KUNNR%}  
-{%VKGRP_Off%}  AND A.VKGRP = {%VKGRP%}  
-{%ZTERM_Off%}  AND A.ZTERM = {%ZTERM%}  
-and a.VKORG={%CompanyCode%}
- ORDER BY ZNAME1
-
+ select 
+   a.Id
+  ,a.Name
+  ,a.Legalperson
+  ,a.Createtime
+  ,a.Updatetime
+  ,a.Establishingtime
+  ,a.IsDelete
+  ,b.Address
+  ,b.Type  
+ from Company a
+join Address b on a.Id=b.id
+where 1=1
+{%Name_Off%} and {%Name%}
+{%Legalperson_Off%}    and {%Legalperson%}
+{%Createtime_Off%}        and {%Createtime%}
+{%Establishingtime_Off%}         and {%Establishingtime%}
       ]]>
     </SQL>
-    
-    <SQL ID="SearchOrder">
+
+    <SQL ID="Insert_OrderAll">
       <![CDATA[
-        select * from SaleOrder
+       declare @newid uniqueidentifier  
+       set newid=newid() 
+      INSERT INTO [dbo].[OrderMain]
+           ([Id]
+           ,[Orderno]
+           ,[CreateuserID]
+           ,[CompanyID]
+           ,[Totalmoney]
+           ,[Paymentamount]
+           ,[Paidamount]
+           ,[Createtime]
+           ,[Updatetime]
+           ,[Ordertime]
+           ,[IsDelete])
+     VALUES
+           ( newid
+           ,{%Orderno%}
+           ,{%CreateuserID%}
+           ,{%CompanyID%}
+           ,{%Totalmoney%}
+           ,{%Paymentamount%}
+           ,{%Paidamount%}
+           ,GETDATE()
+           ,GETDATE()
+           ,0)
+   INSERT INTO [dbo].[OrderDetail]
+           ([Id]
+           ,[OrderMainID]
+           ,[Goodsname]
+           ,[Unit]
+           ,[Num]
+           ,[Destination]
+           ,[Totalmoney]
+           ,[Paymentamount]
+           ,[Paidamount]
+           ,[Createetime])
+     VALUES
+        (newid() 
+		   ,newid
+		   ,{%Goodsname%}
+		   ,{%Unit%}
+		   ,{%Num%}
+		   ,{%Destination%}
+		   ,{%Totalmoney%}
+		   ,{%Paymentamount%}
+		   ,{%Paidamount%}
+		   ,{%Paidamount%}
+		   ,GETDATE()
+			) 
+       ]]>
+    </SQL>
+    <SQL ID="Insert_OrderMain">
+      <![CDATA[
+     
+      INSERT INTO [dbo].[OrderMain]
+           ([Id]
+           ,[Orderno]
+           ,[CreateuserID]
+           ,[CompanyID]
+           ,[Totalmoney]
+           ,[Paymentamount]
+           ,[Paidamount]
+           ,[Createtime]
+           ,[Updatetime]
+           ,[Ordertime]
+           ,[IsDelete])
+     VALUES
+           ( newid
+           ,{%Orderno%}
+           ,{%CreateuserID%}
+           ,{%CompanyID%}
+           ,{%Totalmoney%}
+           ,{%Paymentamount%}
+           ,{%Paidamount%}
+           ,GETDATE()
+           ,GETDATE()
+           ,0)  
+       ]]>
+    </SQL>
+    <SQL ID="Insert_OrderDetail">
+      <![CDATA[
+     
+    INSERT INTO [dbo].[OrderDetail]
+           ([Id]
+           ,[OrderMainID]
+           ,[Goodsname]
+           ,[Unit]
+           ,[Num]
+           ,[Destination]
+           ,[Totalmoney]
+           ,[Paymentamount]
+           ,[Paidamount]
+           ,[Createetime])
+     VALUES
+        (newid() 
+		   ,{%OrderMainID%}
+		   ,{%Goodsname%}
+		   ,{%Unit%}
+		   ,{%Num%}
+		   ,{%Destination%}
+		   ,{%Totalmoney%}
+		   ,{%Paymentamount%}
+		   ,{%Paidamount%}
+		   ,{%Paidamount%}
+		   ,GETDATE()
+			) 
+       ]]>
+    </SQL>
+    <SQL ID="Update_Order">
+      <![CDATA[
+UPDATE [dbo].[OrderMain]
+   SET		
+	Updatetime=getdate()
+	{%CreateuserID_Off%}  ,CreateuserID={%CreateuserID%}
+	{%CompanyID_Off%}  ,CompanyID={%CompanyID%}
+	{%Totalmoney_Off%}  ,Totalmoney={%Totalmoney%}
+	{%Paymentamount_Off%}  ,Paymentamount={%Paymentamount%}
+	{%Paidamount_Off%}  ,Paidamount={%Paidamount%}
+	{%CreateuserID_Off%}  ,CreateuserID={%CreateuserID%}
+ WHERE Id={%Id%}
+   UPDATE [dbo].[OrderDetail]
+   SET 
+	    Goodsname={%Goodsname%}
+	   {%[Unit_Off%}  ,Unit={%Unit%}
+	   {%Num_Off%}  ,Num={%Num%}
+	   {%Destination_Off%}  ,Destination={%Destination%}
+	   {%Totalmoney_Off%}  ,Totalmoney={%Totalmoneydetail%}
+	   {%Paymentamount_Off%}  ,Paymentamount={%Paymentamountdetail%}
+	   {%Paidamount_Off%}  ,Paidamount={%Paidamountdetail%}
+ WHERE Id={%Id%}
+      ]]>
+    </SQL>
+    <SQL ID="Update_OrderMain">
+      <![CDATA[
+   UPDATE [dbo].[OrderMain]
+   SET		
+	Updatetime=getdate()
+	{%CreateuserID_Off%}  ,CreateuserID={%CreateuserID%}
+	{%CompanyID_Off%}  ,CompanyID={%CompanyID%}
+	{%Totalmoney_Off%}  ,Totalmoney={%Totalmoney%}
+	{%Paymentamount_Off%}  ,Paymentamount={%Paymentamount%}
+	{%Paidamount_Off%}  ,Paidamount={%Paidamount%}
+	{%CreateuserID_Off%}  ,CreateuserID={%CreateuserID%}
+ WHERE Id={%Id%}
+      ]]>
+    </SQL>
+    <SQL ID="Update_Detail">
+      <![CDATA[
+   UPDATE [dbo].[OrderDetail]
+   SET 
+	    Goodsname={%Goodsname%}
+	   {%[Unit_Off%}  ,Unit={%Unit%}
+	   {%Num_Off%}  ,Num={%Num%}
+	   {%Destination_Off%}  ,Destination={%Destination%}
+	   {%Totalmoney_Off%}  ,Totalmoney={%Totalmoneydetail%}
+	   {%Paymentamount_Off%}  ,Paymentamount={%Paymentamountdetail%}
+	   {%Paidamount_Off%}  ,Paidamount={%Paidamountdetail%}
+ WHERE Id={%Id%}
+      ]]>
+    </SQL>
+    <SQL ID="Delete_Order">
+      <![CDATA[
+    update OrderMain set Isdelete=1
+     where Id={%Id%}
+      ]]>
+    </SQL>
+    <SQL ID="Delete_OrderDetail">
+      <![CDATA[
+    delete OrderDetail where Id={%Id%}
       ]]>
     </SQL>
   </PART>

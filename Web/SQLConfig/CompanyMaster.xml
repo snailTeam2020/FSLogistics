@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SMMSSQL>
+  <PART PGID ="CompanyMaster">
+    <SQL ID="CompanyMaster_Load">
+      <![CDATA[
+ select 
+   a.Id
+  ,a.Companyname
+  ,a.Legalperson
+  ,a.Createtime
+  ,a.Updatetime
+  ,a.Establishingtime
+  ,a.IsDelete
+  ,b.Address
+  ,b.Type  
+ from Company a
+join Address b on a.Id=b.id
+where 1=1
+{%Companyname_Off%} and {%Companyname%}
+{%Legalperson_Off%}    and {%Legalperson%}
+{%Createtime_Off%}        and {%Createtime%}
+{%Establishingtime_Off%}         and {%Establishingtime%}
+      ]]>
+    </SQL>
+
+    <SQL ID="Insert_Company">
+      <![CDATA[
+       declare @newid uniqueidentifier  
+       set newid=newid() 
+      INSERT INTO [dbo].[Company]
+           ([Id]
+           ,[Companyname]
+           ,[Legalperson]
+           ,[Createtime]
+           ,[Updatetime]
+           ,[Establishingtime]
+           ,[IsDelete])
+     VALUES
+           (
+		   newid
+		  ,{%Companyname%}
+		  ,{%Legalperson%}
+		  ,GETDATE()
+		  ,GETDATE()
+		  ,{%Establishingtime%}
+		  ,0
+          )
+     INSERT INTO [dbo].[Address]
+           ([Id]
+           ,[Type]
+           ,[Address])
+     VALUES
+           ( newid
+           ,1
+           ,{%Address%})
+      ]]>
+    </SQL>
+
+    <SQL ID="Update_Company">
+      <![CDATA[
+  UPDATE [dbo].[Company]
+   SET
+Updatetime=GETDATE() 
+ {%Companyname_Off%}                 ,Companyname={%Companyname%}
+ {%Legalperson_Off%}          ,Legalperson ={%Legalperson%}
+ {%Establishingtime_Off%}     Establishingtime={%Establishingtime%}
+ WHERE Id={%Id%}
+      ]]>
+    </SQL>
+    <SQL ID="Delete_Company">
+      <![CDATA[
+    update Company set Isdelete=1
+     where Id={%Id%}
+      ]]>
+    </SQL>
+    
+  </PART>
+</SMMSSQL>

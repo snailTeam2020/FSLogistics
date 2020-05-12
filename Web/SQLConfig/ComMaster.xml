@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SMMSSQL>
+  <PART PGID ="ComMaster">
+    <SQL ID="Inser_Address">
+      <![CDATA[
+        INSERT INTO [dbo].[Address]
+           ([Id]
+           ,[Type]
+           ,[Address])
+     VALUES
+           ({%Id%}
+           ,{%Type%}
+           ,{%Address%})
+      ]]>
+    </SQL>
+    <SQL ID="Update_Address">
+      <![CDATA[
+        update Address set 
+        {%Address_Off%}  {%Address%}
+       where Id={%Id%} and Type={%Type%}
+      ]]>
+    </SQL>
+    <SQL ID="Delete_Address">
+      <![CDATA[
+        delete Address where Id={%Id%}
+      ]]>
+    </SQL>
+    <SQL ID="Search_Address">
+      <![CDATA[
+        select * from Address
+        where Id={%Id%} and Type={%Type%}
+      ]]>
+    </SQL>
+  </PART>
+</SMMSSQL>

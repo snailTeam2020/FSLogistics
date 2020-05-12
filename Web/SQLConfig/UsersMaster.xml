@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SMMSSQL>
+  <PART PGID ="UsersMaster">
+    <SQL ID="UsersMaster_Load">
+      <![CDATA[
+ select 
+ *
+ from Users a
+where 1=1
+{%Name_Off%} and {%Name%}
+{%Tel_Off%}    and {%Tel%}
+{%Createtime_Off%}  and {%Createtime%}
+{%Sex_Off%}         and {%Sex%}
+      ]]>
+    </SQL>
+
+    <SQL ID="Insert_User">
+      <![CDATA[
+       INSERT INTO [dbo].[Users]
+           ([Account]
+           ,[Usertype]
+           ,[Passwd]
+           ,[Name]
+           ,[Tel]
+           ,[Email]
+           ,[Sex]
+           ,[Birthday]
+           ,[Createtime]
+           ,[Updatetime]
+           ,[IsManager]
+           ,[Info]
+           ,[EmailSet]
+           ,[Isdelete])
+     VALUES
+           (
+		   {%Account%}
+		   ,{%Usertype%}
+		   ,{%Passwd%}
+		   ,{%Name%}
+		   ,{%Tel%}
+		   ,{%Email%}
+		   ,{%Sex%}
+		   ,{%Birthday%}
+		   ,{%Createtime%}
+		   ,{%Updatetime%}
+		   ,0
+		   ,{%Info%}
+		   ,{%EmailSet%}
+		   ,0
+			)
+      ]]>
+    </SQL>
+
+    <SQL ID="Update_User">
+      <![CDATA[
+  UPDATE [dbo].[Users]
+   SET
+   Updatetime=getdate()
+   {%Passwd_Off%}   ,Passwd={%Passwd%}	
+   {%Name_Off%}		,Name={%Name%}	
+   {%Tel_Off%}		,Tel={%Tel%}		
+   {%Email_Off%}	,Email={%Email%}	
+   {%Sex_Off%}		,Sex={%Sex%}		
+   {%Birthday_Off%} ,Birthday={%Birthday%}
+   {%Info_Off%}     ,Info={%Info%}	
+   {%EmailSet_Off%} ,EmailSet={%EmailSet%}
+ WHERE ID={%Id%}
+      ]]>
+    </SQL>
+    <SQL ID="Delete_User">
+      <![CDATA[
+    update Users set Isdelete=1
+     where Id={%Id%}
+      ]]>
+    </SQL>
+    
+  </PART>
+</SMMSSQL>
